@@ -1,0 +1,22 @@
+{
+  "name": "orderarranger",
+  "version": "1.0.0",
+  "description": "Medipass backend challenge 2",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nobodyczcz/OrderArranger.git"
+  },
+  "author": "Zhe Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nobodyczcz/OrderArranger/issues"
+  },
+  "homepage": "https://github.com/nobodyczcz/OrderArranger#readme",
+  "dependencies": {
+    "chai": "^4.2.0"
+  }
+}
