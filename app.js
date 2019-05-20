@@ -1,27 +1,19 @@
 var packAndReport = require('./packager').packAndReport;
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+  }
 
-const exampleOrders = [
-    {
-    customerId: 1,
-    orderId: 'abc',
-    weight: 2
-    },
-    {
-    customerId: 2,
-    orderId: 'ghi',
-    weight: 1
-    },
-    {
-    customerId: 1,
-    orderId: 'def',
-    weight: 4
-    },
-    {
-    customerId: 1,
-    orderId: 'zzz',
-    weight: 1
+var orders=[]
+for (var i = 1;i<1000000;i++){
+    var newOrder = {
+        customerId: Math.round(getRandomArbitrary(1,50)),
+        orderId : i.toString(),
+        weight:Math.round(getRandomArbitrary(1,5)),
     }
-]
-
-console.log(JSON.stringify(packAndReport(exampleOrders)))
+    orders.push(newOrder);
+}
+console.log(orders)
+var result = packAndReport(orders);
+console.log(result.vans.length)
+console.log(result.spreadVanIds.length)
 

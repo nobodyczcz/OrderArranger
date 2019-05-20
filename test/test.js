@@ -95,8 +95,8 @@ describe('#putToVan()', function() {
                 for (var i = 0;i<100;i++){
                     var newOrder = {
                         customerId: 1,
-                        orderID : i.toString(),
-                        weight:Math.round(getRandomArbitrary(1,6)),
+                        orderId : i.toString(),
+                        weight:Math.round(getRandomArbitrary(1,5)),
 
                     }
                     orders[i.toString()]=newOrder;
@@ -214,16 +214,33 @@ describe('#packAndReport()', function() {
           
         })
     })
-
-    context('1 00 000 order from different cusomerId', function() {
+    context('200 order from different cusomerId', function() {
         this.timeout(30000);
         it('Should not take too long ', function() {
             var orders=[]
-            for (var i = 1;i<100000;i++){
+            for (var i = 1;i<200;i++){
                 var newOrder = {
-                    customerId: Math.round(getRandomArbitrary(1,100)),
-                    orderID : i.toString(),
-                    weight:Math.round(getRandomArbitrary(1,6)),
+                    customerId: Math.round(getRandomArbitrary(1,50)),
+                    orderId : i.toString(),
+                    weight:Math.round(getRandomArbitrary(1,5)),
+
+                }
+                orders.push(newOrder);
+            }
+            var result = packAndReport(orders);
+            expect(result.vans).is.not.empty
+        }
+        )
+    })
+    context('1000 order from different cusomerId', function() {
+        this.timeout(30000);
+        it('Should not take too long ', function() {
+            var orders=[]
+            for (var i = 1;i<1000;i++){
+                var newOrder = {
+                    customerId: Math.round(getRandomArbitrary(1,50)),
+                    orderId : i.toString(),
+                    weight:Math.round(getRandomArbitrary(1,5)),
 
                 }
                 orders.push(newOrder);
@@ -234,5 +251,41 @@ describe('#packAndReport()', function() {
         )
     })
 
-    
+    context('1 00 000 order from different cusomerId', function() {
+        this.timeout(30000);
+        it('Should not take too long ', function() {
+            var orders=[]
+            for (var i = 1;i<100000;i++){
+                var newOrder = {
+                    customerId: Math.round(getRandomArbitrary(1,50)),
+                    orderId : i.toString(),
+                    weight:Math.round(getRandomArbitrary(1,5)),
+
+                }
+                orders.push(newOrder);
+            }
+            var result = packAndReport(orders);
+            expect(result.vans).is.not.empty
+        }
+        )
+    })
+
+    context('1 000 000 order from different cusomerId', function() {
+        this.timeout(300000);
+        it('Should take some time ', function() {
+            var orders=[]
+            for (var i = 1;i<1000000;i++){
+                var newOrder = {
+                    customerId: Math.round(getRandomArbitrary(1,50)),
+                    orderId : i.toString(),
+                    weight:Math.round(getRandomArbitrary(1,5)),
+
+                }
+                orders.push(newOrder);
+            }
+            var result = packAndReport(orders);
+            expect(result.vans).is.not.empty
+        }
+        )
+    })
 });
